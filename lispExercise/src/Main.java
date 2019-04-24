@@ -17,19 +17,25 @@ public class Main {
             return true;
         }
 
+        //Stack to store characters
         Stack<Character> charStack = new Stack<>();
         for (int i = 0; i < str.length(); i++) {
             char currentChar = str.charAt(i);
+            //Check for left Parenthesis
             if (currentChar == '{' || currentChar == '(' || currentChar == '[') {
                 charStack.push(currentChar);
             }
 
+            //Check for right Parenthesis
             if (currentChar == '}' || currentChar == ')' || currentChar == ']') {
+                //False is stack is empty without left Parenthesis
                 if (charStack.isEmpty()) {
                     return false;
                 }
 
+                //Check for last character
                 char lastChar = charStack.peek();
+                //If current character is right Parenthesis and last character is left Parenthesis, remove from stack
                 if ((currentChar == '}' && lastChar == '{') || (currentChar == ')' && lastChar == '(') ||
                         (currentChar == ']' && lastChar == '[')) {
                     charStack.pop();
